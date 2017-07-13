@@ -26,24 +26,35 @@ public class QueryParameter {
 		if (inputQuery.contains("order by")) {
 			firstCondition = inputQuery.split("order by")[0].trim();
 			orderByColumn = inputQuery.split("order by")[1].trim();
-			String relationalqry = secondCondition.split("and|or")[0].trim();
-			firstCondition = firstCondition.split("select")[1].trim();
+			//String relationalqry = secondCondition.split("and|or")[0].trim();
+			firstCondition = firstCondition.split("from")[0].trim();
+			selectColumn = firstCondition.split("select")[1].trim();
 			this.columnEvaluation(selectColumn);
-			this.comparsionExpression(relationalqry);
+			//this.comparsionExpression(relationalqry);
 			orderByExist = true;
 		}
-		if (inputQuery.contains("group by")) {
+		if (inputQuery.contains("group by")) 
+		{
 			firstCondition = inputQuery.split("group by")[0].trim();
-			orderByColumn = inputQuery.split("group by")[1].trim();
-			if (firstCondition.contains("where")) {
+			groupByColumn = inputQuery.split("group by")[1].trim();
+			if (inputQuery.contains("where")) 
+			{
 				secondCondition = firstCondition.split("where")[1].trim();
 				String releationQry = secondCondition.split("and|or")[0].trim();
-				this.columnEvaluation(releationQry);
-				firstCondition = firstCondition.split("where")[0].trim();
+				//this.columnEvaluation(releationQry);
 				this.comparsionExpression(releationQry);
-				hasgroupbyField = true;
+				firstCondition = firstCondition.split("where")[0].trim();
+				
+				
 			}
-		} else if (inputQuery.contains("where")) {
+			firstCondition=firstCondition.split("from")[0].trim();
+			secondCondition=firstCondition.split("select")[1].trim();
+			this.columnEvaluation(groupByColumn);
+			hasgroupbyField = true;
+			
+		} 
+		
+		else if (inputQuery.contains("where")) {
 			firstCondition = inputQuery.split("where")[0];
 			secondCondition = inputQuery.split("where")[1];
 			secondCondition = secondCondition.trim();
@@ -60,9 +71,10 @@ public class QueryParameter {
 			selectColumn = firstCondition.split("select")[1].trim();
 			this.columnEvaluation(selectColumn);
 		}
-		System.out.println(firstCondition);
-		System.out.println(secondCondition);
-		System.out.println(selectColumn);
+		System.out.println("first=="+firstCondition);
+		System.out.println("second=="+secondCondition);
+		System.out.println("order by="+orderByColumn);
+		System.out.println("select ="+selectColumn);
 		System.out.println(criteriaQuery.getColumn() + "---->" + criteriaQuery.getOperators() + "------->"
 				+ criteriaQuery.getValue());
 
