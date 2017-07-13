@@ -48,7 +48,7 @@ public class QueryParameter {
 			secondCondition = inputQuery.split("where")[1];
 			secondCondition = secondCondition.trim();
 			String relationalqry = secondCondition.split("and|or")[0].trim();
-			System.out.println(relationalqry);
+			//System.out.println(relationalqry);
 			this.comparsionExpression(relationalqry);
 			selectColumn = firstCondition.split("select")[1].trim();
 			this.columnEvaluation(selectColumn);

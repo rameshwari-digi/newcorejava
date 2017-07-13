@@ -3,7 +3,7 @@ package com.niit.coreapp;
 import java.util.*;
 public class InputData 
 {
-	static UserQuery userQuery = new UserQuery();
+	static QueryParser userQuery = new QueryParser();
 	
 	
 	@SuppressWarnings("resource")

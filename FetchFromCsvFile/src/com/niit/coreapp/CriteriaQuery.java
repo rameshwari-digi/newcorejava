@@ -30,6 +30,9 @@ public class CriteriaQuery
 	}
 	
 	
-	
+	public String toString()
+	{
+		return "Criteria [columnName:"+column+"value :"+value+",operator:"+operators+"]";
+	}
 
 }

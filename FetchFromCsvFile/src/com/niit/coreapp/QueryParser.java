@@ -1,9 +1,6 @@
 package com.niit.coreapp;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-
-public class UserQuery
+public class QueryParser
 {
 	static String receivedQuery,querySplit[],classPath,firstcondition, secondcondition,columns;
 boolean	hasSelect,hasAsterisk,whereExists,groupbyExists,sortbyExists,orderbyExists,byExists,hasSum,hasCount;
@@ -38,7 +35,7 @@ public String[] csvParameter()
 		
 	}
 	columns=querySplit[1];
-	System.out.println(classPath+columns);
+//	System.out.println(classPath+columns);
 	
 	return querySplit;
 }
@@ -46,7 +43,7 @@ public String[] csvParameter()
 
 public boolean inputValidExpression(String receivedQuery)
 {
-	if(receivedQuery.contains("select")&& receivedQuery.contains("from")||receivedQuery.contains("*")||receivedQuery.contains("where")||receivedQuery.contains("group by")||receivedQuery.contains("sort by")||receivedQuery.contains("order by"))
+	if(receivedQuery.contains("select")&& receivedQuery.contains("from")||receivedQuery.contains("*")||receivedQuery.contains("where")||receivedQuery.contains("group by")||receivedQuery.contains("order by")||receivedQuery.contains(" "))
     {
         return true;
     }    
@@ -73,8 +70,7 @@ public boolean executeQuery(String receivedQuery)
      QueryParameter custobj=new QueryParameter();
      custobj.querySplit(receivedQuery);
     	
-    
-     return true;
+         return true;
     }
     else
     {
